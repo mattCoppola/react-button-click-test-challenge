@@ -1,11 +1,13 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import {shallow, mount} from 'enzyme';
 
 import Button from './button';
 
 describe('<Button />', () => {
     it('Should call props.onClick when the button is clicked', () => {
-        const wrapper = shallow(<Button />);
+        const callback = jest.fn();
+        const wrapper = mount(<Button onClick={callback}/>);
         wrapper.find('button').simulate('click');
+        expect(callback).toHaveBeenCalled();
     });
 });
